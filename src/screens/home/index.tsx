@@ -55,7 +55,7 @@ function Home() {
                                 <Button variant="primary" onClick={() => { }} p={4} h="56px" w="230px">Download Reclaim App</Button>
                             </>
                             : <>
-                                <Image src='/assets/img/Heroimage.svg' width='350px' height='341px' alt="" />
+                                <Image src='/assets/img/HeroImage.svg' width='350px' height='341px' alt="" />
                                 <Heading as='h2'>Let&apos;s mint your Orange Gem!</Heading>
                                 <Text variant="subtext">Your Orange DAO community access token.</Text>
 
