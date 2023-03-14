@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
-import { Box, Button, Flex, Heading, Image, Spacer, Text } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
+import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react'
 import QRCode from "react-qr-code";
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected'
+import axios from 'axios'
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
 function Home() {
 
@@ -13,6 +16,14 @@ function Home() {
     const { disconnect } = useDisconnect()
 
     const [qrCodeValue, setQrCodeValue] = useState<string>('')
+
+    useEffect(() => {
+        if (address) {
+            axios.post(`${BASE_URL}/adduser`, { userAddress: address }).then((res) => {
+                setQrCodeValue(res.data.templateUrl)
+            })
+        }
+    }, [address])
 
 
     return (
@@ -45,7 +56,7 @@ function Home() {
                             </>
                             : <>
                                 <Image src='/assets/img/Heroimage.svg' width='350px' height='341px' alt="" />
-                                <Heading as='h2'>Let's mint your Orange Gem!</Heading>
+                                <Heading as='h2'>Let&apos;s mint your Orange Gem!</Heading>
                                 <Text variant="subtext">Your Orange DAO community access token.</Text>
 
                                 {/* Connect wallet CTA */}
