@@ -1,16 +1,23 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import { AppContextProvider } from '@/Contexts/Context'
 import { ChakraProvider } from '@chakra-ui/react'
+import theme from '@/theme';
+import { WagmiConfig, createClient } from 'wagmi'
+import { getDefaultProvider } from 'ethers'
+
+const client = createClient({
+  autoConnect: true,
+  provider: getDefaultProvider(),
+})
 
 export default function App({ Component, pageProps }: AppProps) {
 
   return (
-    <ChakraProvider>
-      <AppContextProvider>
-        <Component {...pageProps} />
-      </AppContextProvider>
-    </ChakraProvider>
+    <WagmiConfig client={client}>
+      <ChakraProvider theme={theme}>
+          <Component {...pageProps} />
+      </ChakraProvider>
+    </WagmiConfig>
 
   )
 }
