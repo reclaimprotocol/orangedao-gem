@@ -16,14 +16,31 @@ function Home() {
     const { disconnect } = useDisconnect()
 
     const [qrCodeValue, setQrCodeValue] = useState<string>('')
+    const [error, setError] = useState<string>('')
 
     useEffect(() => {
         if (address) {
             axios.post(`${BASE_URL}/adduser`, { userAddress: address }).then((res) => {
                 setQrCodeValue(res.data.templateUrl)
+            }).catch((e) => {
+                if(e.response.data.error.includes('ConditionalCheckFailedException')){
+                    setError('User already exists')
+                } else {
+                    console.error(e)
+                }
             })
         }
     }, [address])
+
+    useEffect(() => {
+        if(error){
+            // alert(error)
+            setError('')
+            axios.get(`${BASE_URL}/user/${address}`).then((res) => {
+                setQrCodeValue(res.data.templateLink.S)
+            })
+        }
+    }, [error, address])
 
 
     return (
@@ -47,11 +64,14 @@ function Home() {
                                 </Flex>
 
                                 {/* QR Code */}
-                                <Heading as='h1'>Scan the QR</Heading>
-                                <Text variant="subtext">Use your bookface credentials to prove you’re a YC alum.</Text>
-                                <QRCode
-                                    value={qrCodeValue}
-                                />
+
+                                {qrCodeValue && <><Heading as='h1'>Scan the QR</Heading>
+                                    <Text variant="subtext">Use your bookface credentials to prove you’re a YC alum.</Text>
+                                    <QRCode
+                                        value={qrCodeValue}
+                                    />
+
+                                </>}
                                 <Button variant="primary" onClick={() => { }} p={4} h="56px" w="230px">Download Reclaim App</Button>
                             </>
                             : <>
