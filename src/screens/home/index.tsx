@@ -5,6 +5,7 @@ import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected'
 import axios from 'axios'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { truncateAddress } from '@/utils/utils';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -75,9 +76,9 @@ function Home() {
                                 <Flex alignItems='center' gap={2}>
                                     <Box display='inline-flex' h="48px" alignItems="center" gap={2} backgroundColor="secondary" p={2} borderRadius="24px">
                                         <Image src='/assets/img/colorethereumIcon.svg' boxSize={8} alt="" />
-                                        <Text color="#FB870F" fontSize="16px" fontWeight={700} pr={4}>{address}</Text>
+                                        <Text color="#FB870F" fontSize={{ base: '12px', md: '14px', lg: '16px' }} fontWeight={700} pr={4}>{isMobileDevice ? truncateAddress(address) : address}</Text>
                                     </Box>
-                                    <Text variant="subtext" fontWeight={700} color="red" onClick={() => disconnect()} cursor="pointer">Disconnect</Text>
+                                    <Text variant="subtext" fontSize={{ base: '12px', md: '14px', lg: '16px' }} fontWeight={700} color="red" onClick={() => disconnect()} cursor="pointer">Disconnect</Text>
                                 </Flex>
 
                                 {/* QR Code */}
