@@ -13,7 +13,7 @@ export default {
                 width: "178px",
                 height: "56px",
                 transition: ".3s ease-in-out",
-                _hover: { boxShadow: "8px 8px #fabe7d", transition: ".3s"},
+                _hover: { background: 'linear-gradient(90deg, #fc8303 0%, #FB870D 100%)'},
                 _active: {background: 'linear-gradient(90deg, #FB870D 0%, #fc8303 100%)'},
             }
         }
