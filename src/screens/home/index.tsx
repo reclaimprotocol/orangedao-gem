@@ -4,6 +4,7 @@ import QRCode from "react-qr-code";
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected'
 import axios from 'axios'
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -23,7 +24,7 @@ function Home() {
             axios.post(`${BASE_URL}/adduser`, { userAddress: address }).then((res) => {
                 setQrCodeValue(res.data.templateUrl)
             }).catch((e) => {
-                if(e.response.data.error.includes('ConditionalCheckFailedException')){
+                if (e.response.data.error.includes('ConditionalCheckFailedException')) {
                     setError('User already exists')
                 } else {
                     console.error(e)
@@ -33,7 +34,7 @@ function Home() {
     }, [address])
 
     useEffect(() => {
-        if(error){
+        if (error) {
             // alert(error)
             setError('')
             axios.get(`${BASE_URL}/user/${address}`).then((res) => {
@@ -78,9 +79,7 @@ function Home() {
                                 <Image src='/assets/img/heroimage.png' width='350px' height='341px' alt="" />
                                 <Heading as='h2'>Let&apos;s mint your Orange Gem!</Heading>
                                 <Text variant="subtext">Your Orange DAO community access token.</Text>
-
-                                {/* Connect wallet CTA */}
-                                <Button variant="primary" onClick={() => connect()}>Connect wallet </Button>
+                                <ConnectButton />
                             </>
                     }
                 </Flex>
