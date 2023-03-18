@@ -66,7 +66,7 @@ function Home() {
             <Flex h='70vh' direction='column' alignItems='center' justifyItems='center'>
                 <Flex alignItems="center" gap={4}>
                     <Image src='assets/img/orangelogo.svg' alt='logo' boxSize={20} />
-                    <Heading as='h1'>Orange Dao Gem</Heading>
+                    <Heading as='h1'>Orange Dao</Heading>
                 </Flex>
 
                 <Flex direction='column' alignItems='center' justifyItems='center'>
