@@ -64,7 +64,11 @@ function Home() {
     return (
         <Box h='100vh' p={8}>
             <Flex h='70vh' direction='column' alignItems='center' justifyItems='center'>
-                <Heading as='h1'>OrangeDao Gem</Heading>
+                <Flex alignItems="center" gap={4}>
+                    <Image src='assets/img/orangelogo.svg' alt='logo' boxSize={20} />
+                    <Heading as='h1'>Orange Dao Gem</Heading>
+                </Flex>
+
                 <Flex direction='column' alignItems='center' justifyItems='center'>
 
                     {
@@ -85,19 +89,19 @@ function Home() {
 
                                 {
                                     !isMobileDevice &&
-                                         <>
-                                            {
-                                                qrCodeValue && <><Heading as='h1' mt={10}>Scan the QR</Heading>
-                                                    <Text variant="subtext" mt={8} mb={8}>Use your bookface credentials in Reclaim wallet to prove you&apos;re a YC alum.</Text>
-                                                    <QRCode
-                                                        value={qrCodeValue}
-                                                    />
-                                                    <Text mt={10} color="gray" fontWeight={500}>Don&apos;t have the Reclaim wallet?</Text>
-                                                </>
-                                            }
-                                        </>
+                                    <>
+                                        {
+                                            qrCodeValue && <><Heading as='h1' mt={10}>Scan the QR</Heading>
+                                                <Text variant="subtext" mt={8} mb={8}>Use your bookface credentials in Reclaim wallet to prove you&apos;re a YC alum.</Text>
+                                                <QRCode
+                                                    value={qrCodeValue}
+                                                />
+                                                <Text mt={10} color="gray" fontWeight={500}>Don&apos;t have the Reclaim wallet?</Text>
+                                            </>
+                                        }
+                                    </>
                                 }
-                                
+
                                 <Button variant="primary"
                                     onClick={() => {
                                         if (isMobileDevice)
@@ -105,7 +109,7 @@ function Home() {
                                     }} p={4} mt={isMobileDevice ? 8 : 2} h="56px" w="230px">{isMobileDevice ? "Open Reclaim wallet" : "Download Reclaim wallet"}</Button>
                             </>
                             : <Flex direction='column' alignItems='center' gap={8} justifyItems='center'>
-                                <Image src='/assets/img/heroimage.png' width='350px' height='341px' alt="" />
+                                <Image src='/assets/img/heroimage.png' mt={8} width='350px' height='341px' alt="" />
                                 <Heading as='h2'>Let&apos;s mint your Orange Gem!</Heading>
                                 <Text variant="subtext">Your Orange DAO community access token.</Text>
 
