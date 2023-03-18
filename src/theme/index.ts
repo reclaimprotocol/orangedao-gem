@@ -10,6 +10,13 @@ const theme = extendTheme({
   components: {
     ...button,
     ...text
+  },
+  styles: {
+    global: {
+      body: {
+        bg: "#FBFAFA",
+      }
+    }
   }
 })
 
