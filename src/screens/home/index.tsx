@@ -103,13 +103,14 @@ function Home() {
                                 }
 
                                 <Button variant="primary"
+                                    isDisabled={isMobileDevice ? !qrCodeValue : false}
                                     onClick={() => {
                                         if (isMobileDevice)
                                             window.open(qrCodeValue, '_blank')
                                     }} p={4} mt={isMobileDevice ? 8 : 2} h="56px" w="230px">{isMobileDevice ? "Open Reclaim wallet" : "Download Reclaim wallet"}</Button>
                             </>
                             : <Flex direction='column' alignItems='center' gap={8} justifyItems='center'>
-                                <Image src='/assets/img/heroimage.png' mt={8} width='350px' height='341px' alt="" />
+                                <Image src='/assets/img/heroimage.png' mt={8} width={isMobileDevice ? '250px': '350px'} height={isMobileDevice ? '250px': '341px'} alt="" />
                                 <Heading as='h2'>Let&apos;s mint your Orange Gem!</Heading>
                                 <Text variant="subtext">Your Orange DAO community access token.</Text>
 
